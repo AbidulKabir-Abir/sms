@@ -55,6 +55,8 @@ function textRequestHandler(req, res, number, carrier, region) {
   // Time to actually send the message
   text.send(number, message, carrierKey, region, (err) => {
     if (err) {
+      // ✅ ADDED: This logs the actual error to Render logs
+      console.error('❌ SendGrid Error Details:', err);
       res.send({
         success: false,
         message: `Communication with SMS gateway failed. Did you configure mail transport in lib/config.js?  Error message: '${err.message}'`,
