@@ -83,7 +83,8 @@ app.all('/text', (req, res) => {
     return;
   }
   const number = stripPhone(req.body.number);
-  if (number.length < 9 || number.length > 10) {
+  // ✅ FIXED: Support international numbers (up to 15 digits)
+  if (number.length < 9 || number.length > 15) {
     res.send({ success: false, message: 'Invalid phone number.' });
     return;
   }
